@@ -1,0 +1,6 @@
+Course Code		Course Name		Credits
+cs6153d		ssl		2
+cs6154d		dsa		4
+cs6155d		dbm		5
+cs6156d		ise		6
+cs6157d		mat		4
