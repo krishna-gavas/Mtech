@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int i = 0;
+int i = 0,top = -1;
 
 Student* getNewNode(string data){
     Student* newNode = new Student();
@@ -80,27 +80,122 @@ Student *Delete(Student *root, string sname)
     return root;
 }
 
-void treeWalk(Student* root,int n){
-    if(root == NULL || n==1)
-        return;
-    treeWalk(root->left,n-1);
-    cout<<root->name<<endl;
-    treeWalk(root->right,n-1);
+//------------------------------STACK OPERATIONS ------------------------------
+
+void push(Student*  Stack[],int n,Student* X){
+	if(top == n-1){
+		cout<<"Stack Overflow"<<endl;
+		return;
+	}
+	Stack[++top] = X;
 }
 
-void treeWalkDESC(Student* root,int n){
-    if(root == NULL || n==1)
-        return;
-    treeWalkDESC(root->right,n-1);
-    cout<<root->name<<endl;
-    treeWalkDESC(root->left,n-1);
+void pop(Student*  Stack[],int n){
+	if(top == -1){
+		cout<<"Stack Underflow"<<endl;
+		return;
+	}
+	top--;
 }
 
-string* treeWalkN(Student* root,string* str){
-    if(root == NULL)
-        return str;
-    str = treeWalkN(root->left,str);
-    str[i++] = root->name;
-    str = treeWalkN(root->right,str);
+bool empty(Student*  Stack[],int n){
+	if(top == -1)
+		return true;
+	else
+		return false;
+}
+
+Student* Top(Student*  Stack[]){
+	return Stack[top];
+}
+
+//------------------------------RECURSIVE treeWalk ------------------------------
+
+// void treeWalk(Student* root,int n){
+//     if(root == NULL || n==1)
+//         return;
+//     treeWalk(root->left,n-1);
+//     cout<<root->name<<endl;
+//     treeWalk(root->right,n-1);
+// }
+
+//----------------------------NON-RECURSIVE treeWalk ----------------------------
+void treeWalk(Student* root,int n){ 
+	Student*  Stack[n]; 
+	Student* curr = root; 
+	while((curr != NULL || empty(Stack,n) == false) && (n > 0)){ 
+		while (curr != NULL){ 
+			push(Stack,n,curr); 
+			curr = curr->left; 
+		} 
+		curr = Top(Stack); 
+		pop(Stack,n); 
+
+		cout << curr->name <<endl; 
+
+		curr = curr->right; 
+		n--;
+	}
+}
+
+//------------------------------RECURSIVE treeWalkDESC ------------------------------
+
+// void treeWalkDESC(Student* root,int n){
+//     if(root == NULL || n==1)
+//         return;
+//     treeWalkDESC(root->right,n-1);
+//     cout<<root->name<<endl;
+//     treeWalkDESC(root->left,n-1);
+// }
+
+//----------------------------NON-RECURSIVE treeWalkDESC ----------------------------
+
+void treeWalkDESC(Student* root,int n){ 
+	Student*  Stack[n];
+	Student* curr = root; 
+	while((curr != NULL || empty(Stack,n) == false) && (n >= 0)){ 
+		while (curr != NULL){ 
+			push(Stack,n,curr); 
+			curr = curr->right; 
+		} 
+		curr = Top(Stack); 
+		pop(Stack,n); 
+
+		cout << curr->name <<endl; 
+
+		curr = curr->left; 
+		n--;
+	}
+}
+
+//------------------------------RECURSIVE treeWalkN ------------------------------
+
+// string* treeWalkN(Student* root,string* str){
+//     if(root == NULL)
+//         return str;
+//     str = treeWalkN(root->left,str);
+//     str[i++] = root->name;
+//     str = treeWalkN(root->right,str);
+// 	return str;
+// }
+
+//----------------------------NON-RECURSIVE treeWalkDESC ----------------------------
+
+string* treeWalkN(Student* root,string* str,int n){ 
+	Student*  Stack[n]; 	 
+	Student* curr = root; 
+	while(curr != NULL || empty(Stack,n) == false){ 
+		while (curr != NULL){ 
+			push(Stack,n,curr); 
+			curr = curr->left; 
+		} 
+		curr = Top(Stack); 
+		pop(Stack,n); 
+
+		str[i++] = curr->name; 
+
+		curr = curr->right; 
+	}
+
 	return str;
 }

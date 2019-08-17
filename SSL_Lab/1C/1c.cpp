@@ -6,7 +6,7 @@
 #include "Queue.h"
 using namespace std;
 
-int num;
+int num[10];
 
 int getCredit(struct Course *arr[],string key,int n){
 	for(int i=0;i<n;i++){
@@ -29,7 +29,7 @@ int addStudent(struct Course *arr[],int n,string ccode){
 	}
 	cout<<"Enter the maxLimit of Students: ";
 	cin>>arr[index]->maxLimit;
-	num = arr[index]->maxLimit;
+	num[index] = arr[index]->maxLimit;
 	// arr[index] = new Course();
 	while(choice2 == 'a' || choice2 == 'd' || choice2 == 't'){
 			
@@ -59,7 +59,7 @@ int addStudent(struct Course *arr[],int n,string ccode){
 				}
 			}
 			else if(choice2 == 't'){
-				treeWalk(arr[index]->regList,arr[index]->maxLimit);
+				treeWalk(arr[index]->regList,num[index]);
 			}
 			cout<<"Press 'a' to add Student ,'d' to delete and 't' to traverse: ";
         	cin>>choice2;
@@ -77,7 +77,7 @@ void printRegListASC(struct Course *arr[],int n,string ccode){
             break;
         }
 	}
-	treeWalk(arr[index]->regList,num);
+	treeWalk(arr[index]->regList,num[index]);
 }
 
 void printRegListDESC(struct Course *arr[],int n,string ccode){
@@ -88,7 +88,7 @@ void printRegListDESC(struct Course *arr[],int n,string ccode){
             break;
         }
 	}
-	treeWalkDESC(arr[index]->regList,num);
+	treeWalkDESC(arr[index]->regList,num[index]);
 }
 
 void printRegListN(struct Course *arr[],int n,string ccode,int m,int w){
@@ -99,14 +99,14 @@ void printRegListN(struct Course *arr[],int n,string ccode,int m,int w){
             break;
         }
 	}
-	string* str = new string[num];
+	string* str = new string[num[index]];
 	if(w==0)
-		treeWalk(arr[index]->regList,m+1);
+		treeWalk(arr[index]->regList,m);
 	else if(w==1){
-		str = treeWalkN(arr[index]->regList,str);
+		str = treeWalkN(arr[index]->regList,str,num[index]);
 		// cout<<str[2]<<"\n"<<str[3]<<endl;
 		int len = 0;
-		for (int k = 0; k < num; k++)
+		for (int k = 0; k < num[index]; k++)
         if (str[k] != "")
             len++;
 		for(int j=(len - m);j<len;j++)
