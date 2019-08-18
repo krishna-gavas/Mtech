@@ -13,8 +13,7 @@ struct Student{
 
 struct Waiting{
     string name;
-    Waiting* prev;
-    Waiting* next;
+    int priority;
 };
 
 struct Course{
@@ -23,7 +22,7 @@ struct Course{
 	int credits;
     int maxLimit;
     struct Student *regList;
-    struct Waiting *waitList;
+    struct Waiting *A;
 };
 
 

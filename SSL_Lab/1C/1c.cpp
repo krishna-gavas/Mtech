@@ -7,18 +7,10 @@
 using namespace std;
 
 int num[10];
-
-int getCredit(struct Course *arr[],string key,int n){
-	for(int i=0;i<n;i++){
-		if(!(key.compare(arr[i]->code)))
-			return arr[i]->credits;
-	}
-	return 0;
-}
-
+int waitCount[10];
 
 int addStudent(struct Course *arr[],int n,string ccode){
-    int index;
+    int index,p;
 	char choice2 = 'a';
 	string sname,name;
     for(int i=0;i<n;i++){
@@ -30,6 +22,8 @@ int addStudent(struct Course *arr[],int n,string ccode){
 	cout<<"Enter the maxLimit of Students: ";
 	cin>>arr[index]->maxLimit;
 	num[index] = arr[index]->maxLimit;
+	waitCount[index] = num[index];
+	arr[index]->A = new Waiting[num[index]];
 	// arr[index] = new Course();
 	while(choice2 == 'a' || choice2 == 'd' || choice2 == 't'){
 			
@@ -40,21 +34,31 @@ int addStudent(struct Course *arr[],int n,string ccode){
     				arr[index]->regList = Insert(arr[index]->regList,sname);
 					arr[index]->maxLimit = arr[index]->maxLimit - 1;
 				}
-				else{
-					arr[index]->waitList = enQueue(arr[index]->waitList,sname);
+				else if(waitCount[index] > 0){
+					cout<<"Enter Priority: ";
+					cin>>p;
+					arr[index]->A = HeapInsert(arr[index]->A,sname, p);
+					waitCount[index] = waitCount[index] - 1;
+					for(int i=1;i <= num[index];i++){
+						if(arr[index]->A[i].priority != 0){
+							cout<<arr[index]->A[i].priority<<" "<<arr[index]->A[i].name<<endl;	
+						}		
+					}
 				}
+				else
+					cout<<"WaitList limit reached"<<endl;
 			}
 			else if(choice2 == 'd'){
 				cout<<"Enter Student's name: ";
         		cin>>sname;
-				if(isEmptyQueue(arr[index]->waitList)){
+				if(isEmptyHeap(arr[index]->A)){
 					arr[index]->regList = Delete(arr[index]->regList,sname);
 					arr[index]->maxLimit = arr[index]->maxLimit + 1;
 				}
 				else{
 					arr[index]->regList = Delete(arr[index]->regList,sname);
-					name = returnName(arr[index]->waitList);
-					arr[index]->waitList = deQueue(arr[index]->waitList);
+					name = ExtractMax(arr[index]->A);
+					waitCount[index] = waitCount[index] + 1;
 					arr[index]->regList = Insert(arr[index]->regList,name);
 				}
 			}
@@ -213,13 +217,6 @@ int main(){
 
     }
 
-
-
-    // cout<<"Enter the Course code of the Course whose credits need to be displayed: ";
-	// cin>>key;
-	// value = getCredit(arr,key,count-1);
-	
-	// cout<<"credits are "<<value<<endl;
 
     return 0;
 }

@@ -4,13 +4,16 @@
 #include "list.h"
 using namespace std;
 
-int isEmptyQueue(Waiting* header);
+int isEmptyHeap(Waiting* A);
 
-string returnName(Waiting* header);
+Waiting* IncreaseKey(Waiting* A,int heapsize,string sname,int p);
 
-Waiting* enQueue(Waiting* header,string sname);
+Waiting* HeapInsert(Waiting* A,string sname,int p);
 
 Waiting* deQueue(Waiting* header);
 
+Waiting* MaxHeapify(Waiting* A,int i);
+
+string ExtractMax(Waiting* A);
 
 #endif

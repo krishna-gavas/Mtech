@@ -7,67 +7,86 @@
 
 using namespace std;
 
-int isEmptyQueue(Waiting* header){
-    if(header == NULL)
+int heapsize=0;
+
+int isEmptyHeap(Waiting* A){
+    if(heapsize == 0)
         return 1;
     else 
         return 0;
 }
 
-string returnName(Waiting* header){
-    string sname;
-    struct Waiting* cur = header;
-    sname = cur->name;
 
-    return sname;
+Waiting* IncreaseKey(Waiting* A,int i,string sname,int p){
+    if(p < A[i].priority){
+        cout<<"new key is smaller than current key"<<endl;
+        return A;
+    }
+    A[i].name = sname;
+    A[i].priority = p;
+    while(i > 1 && A[i/2].priority < A[i].priority){
+        int temp1 = A[i/2].priority;
+        A[i/2].priority = A[i].priority;
+        A[i].priority = temp1;
+
+        string temp2 = A[i/2].name;
+        A[i/2].name = A[i].name;
+        A[i].name = temp2;
+
+        i = i/2;
+    }
+
+    return A;
 }
 
-Waiting* enQueue(Waiting* header,string sname){
-    struct Waiting* temp = new Waiting();
-    struct Waiting* cur = header;
-    struct Waiting* before;
-    temp->name = sname;
-    if(header == NULL){
-        temp->prev = header;
-        temp->next = NULL;
-        header = temp;
-    }
-    else{
-        while(cur != NULL){
-            before = cur;
-            cur = cur->next;         
-        }
-        before->next = temp;
-        temp->prev = before;
-        temp->next = NULL;
-
-    }
-
-    cout<<"Waiting List: "<<endl;
-	struct Waiting* temp1 = header;
-	while(temp1 != NULL){
-		cout<<temp1->name<<endl;
-		temp1 = temp1->next;
-	}
-	cout<<endl;
-
-    return header;
-
-}
-
-Waiting* deQueue(Waiting* header){
-    struct Waiting* cur = header;
-    if(cur->next == NULL){
-        header = header->next;
-        free(cur);
-    }
-    else{
-        header = header->next;
-        header->prev = NULL;
-        free(cur);
-    }
+Waiting* HeapInsert(Waiting* A,string sname,int p){
+    heapsize = heapsize + 1;
+    A[heapsize].name = "";
+    A[heapsize].priority = -1;
     
+    A = IncreaseKey(A,heapsize,sname,p);
+
+    return A;
+}
 
 
-    return header;
+Waiting* MaxHeapify(Waiting* A,int i){
+    int l = 2*i;
+    int r = 2*i + 1;
+    int largest;
+    if(l <= heapsize && A[l].priority > A[i].priority)
+        largest = l;
+    else
+        largest = i;
+
+    if(r <= heapsize && A[r].priority > A[largest].priority)
+        largest = r;
+
+    if(largest != i){
+        int temp1 = A[largest].priority;
+        A[largest].priority = A[i].priority;
+        A[i].priority = temp1;
+
+        string temp2 = A[largest].name;
+        A[largest].name = A[i].name;
+        A[i].name = temp2;
+
+        A = MaxHeapify(A,largest);
+    }
+    return A;
+}
+
+string ExtractMax(Waiting* A){
+    if(heapsize < 1)
+        cout<<"Heap Underflow"<<endl;
+
+    string max = A[1].name;
+    A[1] = A[heapsize];
+    A[heapsize].name = "";
+    A[heapsize].priority = 0;
+    heapsize = heapsize - 1;
+    A = MaxHeapify(A,1);
+
+    return max;
+
 }
