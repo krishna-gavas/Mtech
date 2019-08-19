@@ -16,4 +16,6 @@ Waiting* MaxHeapify(Waiting* A,int i);
 
 string ExtractMax(Waiting* A);
 
+Waiting* deleteKey(Waiting* A,int i);
+
 #endif

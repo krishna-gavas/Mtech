@@ -10,8 +10,8 @@ int num[10];
 int waitCount[10];
 
 int addStudent(struct Course *arr[],int n,string ccode){
-    int index,p;
-	char choice2 = 'a';
+    int index = -1,p;
+	int choice2 = 1;
 	string sname,name;
     for(int i=0;i<n;i++){
 		if(!(ccode.compare(arr[i]->code))){
@@ -19,15 +19,18 @@ int addStudent(struct Course *arr[],int n,string ccode){
             break;
         }
 	}
+	if(index == -1){
+		cout<<"Enter a valid Course code"<<endl;
+		return 0;
+	}
 	cout<<"Enter the maxLimit of Students: ";
 	cin>>arr[index]->maxLimit;
 	num[index] = arr[index]->maxLimit;
 	waitCount[index] = num[index];
 	arr[index]->A = new Waiting[num[index]];
-	// arr[index] = new Course();
-	while(choice2 == 'a' || choice2 == 'd' || choice2 == 't'){
+	while(choice2 == 1 || choice2 == 2 || choice2 == 3 || choice2 == 4){
 			
-			if(choice2 == 'a'){
+			if(choice2 == 1){
 				cout<<"Enter Student's name: ";
         		cin>>sname;
 				if(arr[index]->maxLimit > 0){
@@ -48,7 +51,7 @@ int addStudent(struct Course *arr[],int n,string ccode){
 				else
 					cout<<"WaitList limit reached"<<endl;
 			}
-			else if(choice2 == 'd'){
+			else if(choice2 == 2){
 				cout<<"Enter Student's name: ";
         		cin>>sname;
 				if(isEmptyHeap(arr[index]->A)){
@@ -62,14 +65,33 @@ int addStudent(struct Course *arr[],int n,string ccode){
 					arr[index]->regList = Insert(arr[index]->regList,name);
 				}
 			}
-			else if(choice2 == 't'){
+			else if(choice2 == 3){
+				cout<<"Enter Student's name to be deleted from waiting list: ";
+        		cin>>sname;
+				int k;
+				for(int i=1;i <= num[index];i++){
+						if(arr[index]->A[i].priority != 0){
+							if(!sname.compare(arr[index]->A[i].name)){
+								k = i;
+								break;
+							}
+						}		
+				}
+				arr[index]->A = deleteKey(arr[index]->A,k);
+
+				waitCount[index] = waitCount[index] + 1;
+					for(int i=1;i <= num[index];i++){
+						if(arr[index]->A[i].priority != 0){
+							cout<<arr[index]->A[i].priority<<" "<<arr[index]->A[i].name<<endl;	
+						}		
+					}
+			}
+			else if(choice2 == 4){
 				treeWalk(arr[index]->regList,num[index]);
 			}
-			cout<<"Press 'a' to add Student ,'d' to delete and 't' to traverse: ";
+			cout<<"1.add Student 2.delete from Normal list 3.delete from Waiting list 4.traverse: ";
         	cin>>choice2;
 	}
-
-	// print(arr[index]->regList);
 	return 0;
 }
 

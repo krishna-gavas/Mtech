@@ -90,3 +90,18 @@ string ExtractMax(Waiting* A){
     return max;
 
 }
+
+Waiting* deleteKey(Waiting* A,int i){
+    if(heapsize < 1)
+        cout<<"Heap Underflow"<<endl;
+
+    A[i].priority = A[heapsize].priority;
+    A[i].name = A[heapsize].name;
+
+    A[heapsize].name = "";
+    A[heapsize].priority = 0;
+    heapsize = heapsize - 1;
+    A = MaxHeapify(A,i);
+
+    return A;
+}
