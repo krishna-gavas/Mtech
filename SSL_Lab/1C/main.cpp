@@ -3,16 +3,16 @@
 #include<string.h>
 #include<sstream>
 #include "list.h"
-#include "Queue.h"
+#include "heap.h"
 using namespace std;
 
 int num[10];
 int waitCount[10];
 
 int addStudent(struct Course *arr[],int n,string ccode){
-    int index = -1,p;
-	int choice2 = 1;
-	string sname,name;
+    int index = -1,p,k;
+	int choice2 = 7;
+	string sname,name,newCode,newName;
     for(int i=0;i<n;i++){
 		if(!(ccode.compare(arr[i]->code))){
 			index = i;
@@ -28,70 +28,109 @@ int addStudent(struct Course *arr[],int n,string ccode){
 	num[index] = arr[index]->maxLimit;
 	waitCount[index] = num[index];
 	arr[index]->A = new Waiting[num[index]];
-	while(choice2 == 1 || choice2 == 2 || choice2 == 3 || choice2 == 4){
-			
-			if(choice2 == 1){
-				cout<<"Enter Student's name: ";
-        		cin>>sname;
-				if(arr[index]->maxLimit > 0){
-    				arr[index]->regList = Insert(arr[index]->regList,sname);
-					arr[index]->maxLimit = arr[index]->maxLimit - 1;
-				}
-				else if(waitCount[index] > 0){
-					cout<<"Enter Priority: ";
-					cin>>p;
-					arr[index]->A = HeapInsert(arr[index]->A,sname, p);
-					waitCount[index] = waitCount[index] - 1;
-					for(int i=1;i <= num[index];i++){
-						if(arr[index]->A[i].priority != 0){
-							cout<<arr[index]->A[i].priority<<" "<<arr[index]->A[i].name<<endl;	
-						}		
-					}
-				}
-				else
-					cout<<"WaitList limit reached"<<endl;
-			}
-			else if(choice2 == 2){
-				cout<<"Enter Student's name: ";
-        		cin>>sname;
-				if(isEmptyHeap(arr[index]->A)){
-					arr[index]->regList = Delete(arr[index]->regList,sname);
-					arr[index]->maxLimit = arr[index]->maxLimit + 1;
-				}
-				else{
-					arr[index]->regList = Delete(arr[index]->regList,sname);
-					name = ExtractMax(arr[index]->A);
-					waitCount[index] = waitCount[index] + 1;
-					arr[index]->regList = Insert(arr[index]->regList,name);
-				}
-			}
-			else if(choice2 == 3){
-				cout<<"Enter Student's name to be deleted from waiting list: ";
-        		cin>>sname;
-				int k;
-				for(int i=1;i <= num[index];i++){
-						if(arr[index]->A[i].priority != 0){
-							if(!sname.compare(arr[index]->A[i].name)){
-								k = i;
-								break;
-							}
-						}		
-				}
-				arr[index]->A = deleteKey(arr[index]->A,k);
+	while(choice2 != 6){
+		cout<<"1.add Student\n2.delete from Normal list\n3.delete from Waiting list\n4.traverse\n5.Change Course\n6.Exit\n ";
+		cout<<"Enter your choice: ";
+        cin>>choice2;
 
-				waitCount[index] = waitCount[index] + 1;
-					for(int i=1;i <= num[index];i++){
-						if(arr[index]->A[i].priority != 0){
-							cout<<arr[index]->A[i].priority<<" "<<arr[index]->A[i].name<<endl;	
-						}		
+		switch(choice2){
+			case 1: cout<<"Enter Student's name: ";
+					cin>>sname;
+					if(arr[index]->maxLimit > 0){
+						arr[index]->regList = Insert(arr[index]->regList,sname);
+						arr[index]->maxLimit = arr[index]->maxLimit - 1;
 					}
-			}
-			else if(choice2 == 4){
-				treeWalk(arr[index]->regList,num[index]);
-			}
-			cout<<"1.add Student 2.delete from Normal list 3.delete from Waiting list 4.traverse: ";
-        	cin>>choice2;
+					else if(waitCount[index] > 0){
+						cout<<"Enter Priority: ";
+						cin>>p;
+						arr[index]->A = HeapInsert(arr[index]->A,sname, p);
+						waitCount[index] = waitCount[index] - 1;
+						for(int i=1;i <= num[index];i++){
+							if(arr[index]->A[i].priority != 0){
+								cout<<arr[index]->A[i].priority<<" "<<arr[index]->A[i].name<<endl;	
+							}		
+						}
+					}
+					else
+						cout<<"WaitList limit reached"<<endl;
+
+					break;
+
+			case 2: cout<<"Enter Student's name: ";
+					cin>>sname;
+					if(isEmptyHeap(arr[index]->A)){
+						arr[index]->regList = Delete(arr[index]->regList,sname);
+						arr[index]->maxLimit = arr[index]->maxLimit + 1;
+					}
+					else{
+						arr[index]->regList = Delete(arr[index]->regList,sname);
+						name = ExtractMax(arr[index]->A);
+						waitCount[index] = waitCount[index] + 1;
+						arr[index]->regList = Insert(arr[index]->regList,name);
+					}
+
+					break;
+
+			case 3: cout<<"Enter Student's name to be deleted from waiting list: ";
+					cin>>sname;
+					for(int i=1;i <= num[index];i++){
+							if(arr[index]->A[i].priority != 0){
+								if(!sname.compare(arr[index]->A[i].name)){
+									k = i;
+									
+								}
+							}		
+					}
+					arr[index]->A = deleteKey(arr[index]->A,k);
+
+					waitCount[index] = waitCount[index] + 1;
+						for(int i=1;i <= num[index];i++){
+							if(arr[index]->A[i].priority != 0){
+								cout<<arr[index]->A[i].priority<<" "<<arr[index]->A[i].name<<endl;	
+							}		
+						}
+
+					break;
+
+			case 4: treeWalk(arr[index]->regList,num[index]);
+
+					break;
+
+			case 5: int newIndex;
+					cout<<"Enter Student's name : ";
+					cin>>sname;
+					for(int i=1;i <= num[index];i++){
+							if(arr[index]->A[i].priority != 0){
+								if(!sname.compare(arr[index]->A[i].name)){
+									k = i;
+									
+								}
+							}		
+					}
+					cout<<"Enter the new Course code: ";
+					cin>>newCode;
+					for(int i=0;i<n;i++){
+						if(!(newCode.compare(arr[i]->code))){
+							newIndex = i;
+							
+						}
+					}
+					newName = returnName(arr[index]->A,k);
+					arr[index]->A = deleteKey(arr[index]->A,k);
+					arr[newIndex]->regList = Insert(arr[newIndex]->regList,newName);
+					arr[newIndex]->maxLimit = arr[newIndex]->maxLimit - 1;
+
+					break;
+
+			case 6: return 0;
+					break;
+
+			default: return 0;
+					 break;
+		}
+			
 	}
+
 	return 0;
 }
 

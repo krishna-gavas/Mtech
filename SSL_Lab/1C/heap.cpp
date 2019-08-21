@@ -3,7 +3,7 @@
 #include<string.h>
 #include<sstream>
 #include "list.h"
-#include "Queue.h"
+#include "heap.h"
 
 using namespace std;
 
@@ -89,6 +89,12 @@ string ExtractMax(Waiting* A){
 
     return max;
 
+}
+
+string returnName(Waiting* A,int i){
+    string sname;
+    sname = A[i].name;
+    return sname;
 }
 
 Waiting* deleteKey(Waiting* A,int i){
