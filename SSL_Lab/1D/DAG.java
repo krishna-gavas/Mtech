@@ -6,7 +6,8 @@ class DAG{
 
     private static int V;      //number of vertices
     static Map<String, List<String>> graph = new HashMap<>();        //Adjacency list
-    static Map<String, List<String>> graph2 = new HashMap<>();
+    static Map<String, List<String>> prerequisite = new HashMap<>();        // Prerequisite info
+    static Map<String, List<String>> Register = new HashMap<>();        //Registered Student
 
     static void topologicalSort(Map<String, Integer> in,Map<String, Integer> out, Stack stack,Map<String,Integer> visited){
 
@@ -55,8 +56,10 @@ class DAG{
             
             if(list != null){
                 out.replace(i,list.size()); 
-                for (int j = 0; j < list.size(); j++) 
-                        in.replace(list.get(j),(in.get(list.get(j))) + 1);
+                for (int j = 0; j < list.size(); j++){
+                    in.replace(list.get(j),(in.get(list.get(j))) + 1);
+                    prerequisite.get(list.get(j)).add(i);
+                }
             }
             else{
                 out.replace(i, 0);
@@ -78,13 +81,42 @@ class DAG{
                 System.out.print(stack.pop() + " ");
 
         System.out.println();
-	}
+    }
+    
+    static void RegisterCourse(String name, String course){
+        
+        List<String> list1 = prerequisite.get(course); 
+        if(list1 != null){
+            Integer flag = 0;
+            for(int j=0; j<list1.size(); j++){
+                String str = list1.get(j);
+                if(Register.get(str).contains(name)){
+                    //Nothing Here
+                }
+                else{
+                    flag = 1;
+                    break;
+                }
+            }
+            if(flag == 0){
+                Register.get(course).add(name);
+                System.out.println("Registered Successfully");
+            }
+            else
+                System.out.println("Registration Failed");
+        }
+        else{
+            
+            Register.get(course).add(name);
+            System.out.println("Registered Successfully");
+        }
+    }
 
     public static void main(String args[])throws IOException
     {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the total number of Courses: ");
+        System.out.print("Enter the total number of Courses: ");
         V = sc.nextInt();
 
         System.out.println("Enter the Courses: ");
@@ -92,9 +124,15 @@ class DAG{
             String ver = sc.nextLine();
             if(!graph.containsKey(ver)) 
                 graph.put(ver, new LinkedList());
+            
+            if(!prerequisite.containsKey(ver)) 
+                prerequisite.put(ver, new LinkedList());
+
+            if(!Register.containsKey(ver)) 
+                Register.put(ver, new LinkedList());
         }
 
-        System.out.println("Enter the total number of Edges: ");
+        System.out.print("Enter the total number of Edges: ");
         int E = sc.nextInt();
 
         System.out.println("Enter the Edges(u,v): ");
@@ -111,7 +149,24 @@ class DAG{
         }
 
         //int n = graph.size(); 
-		findInOutDegree(V); 
+        findInOutDegree(V); 
+        Integer choice = 1;
+
+        while(choice == 1){
+            
+            System.out.print("Enter Student Name: ");
+            String name = in.readLine();
+    
+            System.out.print("Enter Course Name: ");
+            String course = in.readLine();
+    
+            RegisterCourse(name,course);
+
+            System.out.print("Press 1 to continue, 2 to exit: ");
+            choice = Integer.parseInt(in.readLine());
+            System.out.println();
+        }
+        
 
         sc.close();
     }
