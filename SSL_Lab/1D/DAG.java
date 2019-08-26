@@ -160,6 +160,22 @@ class DAG{
     }
 
 
+
+    static void printRegisteredStudents(String course, String prefix){
+        final List<String> list = Register.get(course);
+
+        final Trie trie = new Trie();
+        TrieNode root = new TrieNode();
+        for(int j=0;j<list.size();j++){
+            root = trie.insert(list.get(j));
+        }
+
+        char wordArray[] = new char[100];
+
+        trie.printAllWords(root,prefix ,wordArray ,0);
+    }
+
+
     public static void main(String args[])throws IOException
     {
 
@@ -183,7 +199,7 @@ class DAG{
         System.out.print("Enter the total number of Edges: ");
         int E = sc.nextInt();
 
-        System.out.println("Enter the Edges(u,v): ");
+        System.out.println("Enter the Edges<source destination>: ");
 
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
@@ -198,11 +214,11 @@ class DAG{
 
         //int n = graph.size(); 
         findInOutDegree(V); 
-        Integer choice = 4;
+        Integer choice = 5;
 
-        while(choice != 3){
+        while(choice != 4){
 
-            System.out.print("1.Register\t2.Common Course\t3.Exit: ");
+            System.out.print("1.Register\n2.Print Common Course\n3.Print Registered Students\n4.Exit\n ");
             choice = Integer.parseInt(in.readLine());
             System.out.println();
 
@@ -225,7 +241,16 @@ class DAG{
                         CommonCourse(name1,name2);
                         break;
 
-                case 3: break;
+                case 3: System.out.print("Enter Course Name: ");
+                        String courseVal = in.readLine();
+                
+                        System.out.print("Enter prefix String: ");
+                        String prefix = in.readLine();
+
+                        printRegisteredStudents(courseVal,prefix);
+                        break;
+
+                case 4: break;
 
                 default: break;
             }
@@ -234,5 +259,123 @@ class DAG{
         
 
         sc.close();
+    }
+}
+
+
+class Trie{
+    final TrieNode root;
+
+    public Trie() {
+        this.root = new TrieNode();
+    }
+
+    public int query(final String s) {
+        TrieNode current = root;
+        for (int i = 0; i < s.length(); i++) {
+        	if(current==null || current.next(s.charAt(i))==null) {
+				return 0;
+			}
+			else
+				current=current.next(s.charAt(i));
+        }
+        return current.terminating;
+    }
+
+    void printWord(char str[], int n)
+    {
+        System.out.println();
+        for(int i=0; i<n; i++)
+        {
+            System.out.print(str[i] + "");
+        }
+    }
+
+    public void printAllWords(TrieNode node, final String s,  char wordArray[],  int pos ){
+        TrieNode current = node;
+        TrieNode newNode;
+        if(s != null){
+
+            for (int i = 0; i < s.length(); i++) {
+                if(current==null || current.next(s.charAt(i))==null) {
+                    return ;
+                }
+                else{
+                    System.out.println(wordArray[pos++] = s.charAt(i));
+                    if(i == (s.length()-1)){
+                        break;
+                    }
+
+                    current=current.next(s.charAt(i));
+                }
+            }
+            if(current.terminating != 0){
+                
+                printWord(wordArray,pos);
+            }
+            else{
+
+                for(int i=0; i<26; i++)
+                {
+                    char chr = (char)(65 + i);
+                    if(current.next(chr) != null)
+                    {
+                        newNode = current.next(chr);
+                        System.out.println(wordArray[pos++] = (char)(i+ 65));
+
+                        printAllWords(newNode, null, wordArray, pos);
+                    }
+                }
+            }
+
+        }
+        else{
+            if(current == null){
+                System.out.println("NULL");
+                return;
+            }
+            if(current.terminating != 0){
+                
+                printWord(wordArray,pos);
+            }
+            else{
+
+                for(int i=0; i<26; i++)
+                {
+                    char chr = (char)('a' + i);
+                    if(current.next(chr) != null)
+                    {
+                        newNode = current.next(chr);
+                        System.out.println(wordArray[pos++] = (char)(i+ 'a'));
+
+                        printAllWords(newNode, null, wordArray, pos);
+                    }
+                }
+            }
+        }
+
+    }
+
+    public TrieNode insert(final String s) {
+        TrieNode current = root;
+        for (int i = 0; i < s.length(); i++) {
+            if (current.trieNodes[s.charAt(i) - 'a'] == null) {
+                current.trieNodes[s.charAt(i) - 'a'] = new TrieNode();
+            }
+            current = current.next(s.charAt(i));
+        }
+        current.terminating++;
+        return root;
+    }
+}
+
+
+
+class TrieNode {
+    int terminating;
+    final TrieNode[] trieNodes = new TrieNode[26];
+
+    public TrieNode next(final char c) {
+        return trieNodes[c - 'a'];
     }
 }
