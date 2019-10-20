@@ -1,10 +1,8 @@
 import csv
 import re
 
-
-
 filename = "Market_Basket_V3.csv"
-my_dict = {}
+original_dict = {}
 modified_dict = {}
 cartItems = []
 cartItems2 = []
@@ -47,12 +45,12 @@ with open(filename, 'r') as csvfile:
                 unique_list.append(val)
             cartItems.append(val)
             temp_list.append(val)
-        my_dict[key] =value              #storing in dictionary
+        original_dict[key] =value              #storing in dictionary
         temp_list.sort()
         modified_dict[key] = temp_list
 
 cartItems.sort()                        # lexical sorting
-size = len(my_dict)
+size = len(original_dict)
 for item in unique_list:
     item_size = cartItems.count(item)
     if float(item_size/size) >= 0.1 :
@@ -61,7 +59,7 @@ for item in unique_list:
 
 # modified_dict = {k: modified_dict[k] for k in sorted(modified_dict.keys())[:50]}
 k = 2
-while aprioriGen(frequent,k) != None :
+while aprioriGen(frequent,k) :
     Ck = aprioriGen(frequent,2)
 
     for lists in modified_dict.values():
@@ -87,7 +85,5 @@ while aprioriGen(frequent,k) != None :
         if float(item_size/size) >= 0.05 :
             frequent.append(item)
     print(frequent)
+    print()
     k = k + 1
-    break
-
-
