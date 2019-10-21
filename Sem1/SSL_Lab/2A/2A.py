@@ -58,7 +58,7 @@ frequent1 = frequent.copy()                    # Storing first frequent list in 
 
 k = 2
 while aprioriGen(frequent,k) :              # while aprioriGen returns non-empty list
-    Ck = aprioriGen(frequent,2)         
+    Ck = aprioriGen(frequent,k)         
     for lists in modified_dict.values():    # for each transaction(t) check whether  
         for item in Ck:                     # every list of Ck is present in t
             item = list(item)
