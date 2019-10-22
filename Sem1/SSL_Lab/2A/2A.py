@@ -29,7 +29,6 @@ def aprioriGen(Lk, k):                  #creates Ck+1 from Lk
                 retList.append(Lk[i] | Lk[j])
     return retList
 
-
 with open(filename, 'r') as csvfile:
     reader = csv.reader(csvfile)
     header = next(reader)
@@ -54,14 +53,12 @@ for item in unique_list:
     item_size = cartItems.count(item)
     if float(item_size/size) >= 0.1 :
         frequent.append({item})         # Frequent items for k = 1
-# print(frequent)
-print()
+
 frequent1 = frequent.copy()                    # Storing first frequent list in frequent1
 
 k = 2
 while aprioriGen(frequent,k) :              # while aprioriGen returns non-empty list
-    Ck = aprioriGen(frequent,2)         
-
+    Ck = aprioriGen(frequent,k)         
     for lists in modified_dict.values():    # for each transaction(t) check whether  
         for item in Ck:                     # every list of Ck is present in t
             item = list(item)
@@ -74,18 +71,15 @@ while aprioriGen(frequent,k) :              # while aprioriGen returns non-empty
                     break
             item = set(item)
             if flag == 1:
-                cartItems2.append(item)      
-        
-    
-    frequent.clear()
+                cartItems2.append(item)       
+    frequent.clear()                        # clear initial frquent list
     for item in unique_list2:
         item_size = cartItems2.count(item)
         if float(item_size/size) >= 0.1 :
             frequent.append(item)
     print(frequent)
     print()
-    print()
-    if len(frequent) != 0:
+    if len(frequent) != 0:                  # copy frequent-list into frequentk until last-1 iteration
         frequentk = frequent.copy()
     k = k + 1
 
@@ -94,8 +88,7 @@ if len(frequentk) == 0:
 else:
     output = frequentk.copy()
 
-
-with open('output.txt', 'w') as f:
+with open('output.txt', 'w') as f:          # create an output.txt file containing frequent n-itemSets
     for item in output:
         f.write("%s\n" % item)
 
