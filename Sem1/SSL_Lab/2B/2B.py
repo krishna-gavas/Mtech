@@ -11,19 +11,15 @@ for row,col in df.iterrows():
     if col[0] not in subd:
         subd.append(col[0])
 
+east = subd[0:9]
+north = subd[9:16]
+west = subd[16:27]
+south = subd[27:36]
+
 for col in df.columns:
     cols.append(col)
 
 size = len(cols)
-
-# for state in subd:
-#     avgList[state] = {}
-#     for i in range(2,size):  
-#         colVal = cols[i] 
-#         mean = df[colVal][df['SUBDIVISION'] == state].mean(axis = 0)
-#          mean = df['DEC'].head(23).mean(axis = 0)
-#         avgList[state][colVal] = round(mean, 2)
-
 
 for val in subd:
     for i in range(2,size):
@@ -33,6 +29,21 @@ for val in subd:
         mean = round(mean, 2)
         df.loc[mask, attr] = df.loc[mask, attr].fillna(mean) 
 
+def MapState(state):
+    if state in east:
+        return "East"
+    elif state in north:
+        return "North"
+    elif state in west:
+        return "West"
+    else:
+        return "South"
+
+
+df['South_West_Monsoon'] = df['Jun-Sep']
+df['North_East_Monsoon'] = df['Oct-Dec']
+
+df['Region_Code'] = df.SUBDIVISION.apply(MapState)
 
 df.to_csv('file1.csv')
     
