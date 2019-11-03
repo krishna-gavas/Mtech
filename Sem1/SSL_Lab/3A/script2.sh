@@ -8,6 +8,6 @@ source config.sh
 # EOFMYSQL
 
 echo "Count of all records"
-mysql -u'root' -p'' TEST_SSL<<EOFMYSQL
+mysql -u$USERNAME -p'' TEST_SSL<<EOFMYSQL
 select count(*) from TEST_SSL;
 EOFMYSQL
