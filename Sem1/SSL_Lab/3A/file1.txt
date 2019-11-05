@@ -1,0 +1,2 @@
+echo "Count of all records"
+mysql -u$USERNAME -p'' TEST_SSL<<EOFMYSQL
