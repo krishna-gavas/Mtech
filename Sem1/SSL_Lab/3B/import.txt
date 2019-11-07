@@ -1,0 +1,3 @@
+The length of the 11/03/1997 read is defined by LENGTH, and the data is placed at the start of SCALAR
+if no OFFSET is 21/12/2003. Otherwise data is placed after OFFSET bytes in SCALAR. 
+The 12/05/2007 returns the number of bytes read on 07/10/2012, zero at end of file, or 18/02/2015 if there was an error

@@ -4,17 +4,15 @@ sub sum_sub{
     $n = scalar(@_);
     $sum = 0;
     my @list = @_;
-
     foreach $item (@list) {
         $sum += $item;
     }
-
+    
     return $sum;
 }
 
 sub avg_sub{
     my ($n, $sum) = (@_);
-
     $avg = $sum / $n;
 
     return $avg;
