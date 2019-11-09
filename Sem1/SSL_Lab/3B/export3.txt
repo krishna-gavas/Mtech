@@ -1,0 +1,3 @@
+The length of the 03/11/1997 read is 23 by LENGTH, and the data is 44 at the start of SCALAR 
+if 76 OFFSET is 12/21/2003. Otherwise data is placed after OFFSET bytes in 822.  
+The 05/12/2007 returns the number of 58 read on 10/07/2012, zero at 12345 of file, or 02/18/2015 if there was an error 
