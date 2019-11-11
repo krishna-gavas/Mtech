@@ -1,0 +1,284 @@
+Number_of_Times,Winning_Team,Player_Name
+  17 Royal Challengers Bangalore,CH Gayle
+  13 Royal Challengers Bangalore,AB de Villiers
+  12 Chennai Super Kings,SK Raina
+  11 Mumbai Indians,RG Sharma
+  11 Chennai Super Kings,MS Dhoni
+  10 Sunrisers Hyderabad,DA Warner
+  10 Royal Challengers Bangalore,V Kohli
+  10 Rajasthan Royals,AM Rahane
+  10 Kolkata Knight Riders,G Gambhir
+  10 Delhi Daredevils,V Sehwag
+  10 Chennai Super Kings,MEK Hussey
+   9 Rajasthan Royals,SR Watson
+   9 Mumbai Indians,KA Pollard
+   9 Kings XI Punjab,SE Marsh
+   8 Rajasthan Royals,YK Pathan
+   8 Mumbai Indians,SR Tendulkar
+   7 Mumbai Indians,AT Rayudu
+   7 Kolkata Knight Riders,YK Pathan
+   7 Chennai Super Kings,RA Jadeja
+   6 Mumbai Indians,Harbhajan Singh
+   6 Kolkata Knight Riders,RV Uthappa
+   6 Kolkata Knight Riders,AD Russell
+   5 Sunrisers Hyderabad,B Kumar
+   5 Royal Challengers Bangalore,JH Kallis
+   5 Rajasthan Royals,JP Faulkner
+   5 Mumbai Indians,SL Malinga
+   5 Kolkata Knight Riders,SP Narine
+   5 Kolkata Knight Riders,JH Kallis
+   5 Kings XI Punjab,Sandeep Sharma
+   5 Kings XI Punjab,GJ Maxwell
+   5 Delhi Daredevils,DA Warner
+   5 Chennai Super Kings,M Vijay
+   4 Sunrisers Hyderabad,A Mishra
+   4 Rajasthan Royals,SK Warne
+   4 Mumbai Indians,KH Pandya
+   4 Mumbai Indians,DR Smith
+   4 Kolkata Knight Riders,UT Yadav
+   4 Kolkata Knight Riders,SC Ganguly
+   4 Kings XI Punjab,KC Sangakkara
+   4 Kings XI Punjab,DPMD Jayawardene
+   4 Kings XI Punjab,AR Patel
+   4 Deccan Chargers,AC Gilchrist
+   4 Chennai Super Kings,ML Hayden
+   3 Royal Challengers Bangalore,R Vinay Kumar
+   3 Rising Pune Supergiant,BA Stokes
+   3 Rajasthan Royals,BJ Hodge
+   3 Mumbai Indians,LMP Simmons
+   3 Kolkata Knight Riders,NM Coulter-Nile
+   3 Kolkata Knight Riders,MK Tiwary
+   3 Kings XI Punjab,M Vohra
+   3 Kings XI Punjab,DA Miller
+   3 Kings XI Punjab,AC Gilchrist
+   3 Gujarat Lions,DR Smith
+   3 Gujarat Lions,AJ Finch
+   3 Delhi Daredevils,G Gambhir
+   3 Delhi Daredevils,A Mishra
+   3 Deccan Chargers,RG Sharma
+   3 Deccan Chargers,DW Steyn
+   3 Deccan Chargers,A Symonds
+   3 Chennai Super Kings,DR Smith
+   3 Chennai Super Kings,A Nehra
+   2 Sunrisers Hyderabad,Rashid Khan
+   2 Sunrisers Hyderabad,PA Patel
+   2 Sunrisers Hyderabad,MC Henriques
+   2 Sunrisers Hyderabad,GH Vihari
+   2 Royal Challengers Bangalore,Yuvraj Singh
+   2 Royal Challengers Bangalore,MV Boucher
+   2 Royal Challengers Bangalore,MK Pandey
+   2 Royal Challengers Bangalore,LRPL Taylor
+   2 Royal Challengers Bangalore,KP Pietersen
+   2 Royal Challengers Bangalore,A Kumble
+   2 Rising Pune Supergiant,MS Dhoni
+   2 Rising Pune Supergiant,JD Unadkat
+   2 Rising Pune Supergiant,AM Rahane
+   2 Rising Pune Supergiant,AB Dinda
+   2 Rajasthan Royals,Sohail Tanvir
+   2 Rajasthan Royals,SK Trivedi
+   2 Rajasthan Royals,PV Tambe
+   2 Rajasthan Royals,GC Smith
+   2 Pune Warriors,SPD Smith
+   2 Mumbai Indians,ST Jayasuriya
+   2 Mumbai Indians,SM Pollock
+   2 Mumbai Indians,N Rana
+   2 Mumbai Indians,MM Patel
+   2 Mumbai Indians,MJ McClenaghan
+   2 Mumbai Indians,MG Johnson
+   2 Mumbai Indians,MEK Hussey
+   2 Mumbai Indians,JP Duminy
+   2 Mumbai Indians,HH Pandya
+   2 Mumbai Indians,CJ Anderson
+   2 Kolkata Knight Riders,Shakib Al Hasan
+   2 Kolkata Knight Riders,L Balaji
+   2 Kolkata Knight Riders,Iqbal Abdulla
+   2 Kolkata Knight Riders,CA Lynn
+   2 Kochi Tuskers Kerala,BJ Hodge
+   2 Kochi Tuskers Kerala,BB McCullum
+   2 Kings XI Punjab,WP Saha
+   2 Kings XI Punjab,PP Chawla
+   2 Kings XI Punjab,PC Valthaty
+   2 Kings XI Punjab,Mandeep Singh
+   2 Kings XI Punjab,MP Stoinis
+   2 Kings XI Punjab,Azhar Mahmood
+   2 Gujarat Lions,SK Raina
+   2 Gujarat Lions,AJ Tye
+   2 Delhi Daredevils,UT Yadav
+   2 Delhi Daredevils,SV Samson
+   2 Delhi Daredevils,SS Iyer
+   2 Delhi Daredevils,RR Pant
+   2 Delhi Daredevils,KK Nair
+   2 Delhi Daredevils,KD Karthik
+   2 Delhi Daredevils,JP Duminy
+   2 Delhi Daredevils,AB de Villiers
+   2 Deccan Chargers,A Mishra
+   2 Chennai Super Kings,M Ntini
+   2 Chennai Super Kings,M Muralitharan
+   2 Chennai Super Kings,F du Plessis
+   2 Chennai Super Kings,DE Bollinger
+   2 Chennai Super Kings,BW Hilfenhaus
+   2 Chennai Super Kings,BB McCullum
+   1 winner,player_of_match
+   1 Sunrisers Hyderabad,Yuvraj Singh
+   1 Sunrisers Hyderabad,TA Boult
+   1 Sunrisers Hyderabad,S Dhawan
+   1 Sunrisers Hyderabad,Mustafizur Rahman
+   1 Sunrisers Hyderabad,Mohammed Siraj
+   1 Sunrisers Hyderabad,KS Williamson
+   1 Sunrisers Hyderabad,I Sharma
+   1 Sunrisers Hyderabad,HM Amla
+   1 Sunrisers Hyderabad,EJG Morgan
+   1 Sunrisers Hyderabad,DW Steyn
+   1 Sunrisers Hyderabad,DJG Sammy
+   1 Sunrisers Hyderabad,BCJ Cutting
+   1 Sunrisers Hyderabad,AJ Finch
+   1 Sunrisers Hyderabad,A Zampa
+   1 Sunrisers Hyderabad,A Nehra
+   1 Royal Challengers Bangalore,YS Chahal
+   1 Royal Challengers Bangalore,VR Aaron
+   1 Royal Challengers Bangalore,SR Watson
+   1 Royal Challengers Bangalore,S Aravind
+   1 Royal Challengers Bangalore,RV Uthappa
+   1 Royal Challengers Bangalore,R Dravid
+   1 Royal Challengers Bangalore,PA Patel
+   1 Royal Challengers Bangalore,P Kumar
+   1 Royal Challengers Bangalore,Mandeep Singh
+   1 Royal Challengers Bangalore,MA Starc
+   1 Royal Challengers Bangalore,KM Jadhav
+   1 Royal Challengers Bangalore,JD Unadkat
+   1 Royal Challengers Bangalore,HV Patel
+   1 Rising Pune Supergiant,Washington Sundar
+   1 Rising Pune Supergiant,SPD Smith
+   1 Rising Pune Supergiant,RA Tripathi
+   1 Rising Pune Supergiant,LH Ferguson
+   1 Rajasthan Royals,SV Samson
+   1 Rajasthan Royals,SPD Smith
+   1 Rajasthan Royals,SA Asnodkar
+   1 Rajasthan Royals,R Dravid
+   1 Rajasthan Royals,NV Ojha
+   1 Rajasthan Royals,MJ Lumb
+   1 Rajasthan Royals,LRPL Taylor
+   1 Rajasthan Royals,KK Nair
+   1 Rajasthan Royals,KK Cooper
+   1 Rajasthan Royals,JA Morkel
+   1 Rajasthan Royals,J Botha
+   1 Rajasthan Royals,DJ Hooda
+   1 Rajasthan Royals,AC Voges
+   1 Rajasthan Royals,AA Jhunjhunwala
+   1 Rajasthan Royals,A Singh
+   1 Rajasthan Royals,A Chandila
+   1 Pune Warriors,SC Ganguly
+   1 Pune Warriors,SB Wagh
+   1 Pune Warriors,R Sharma
+   1 Pune Warriors,MR Marsh
+   1 Pune Warriors,MN Samuels
+   1 Pune Warriors,MK Pandey
+   1 Pune Warriors,MD Mishra
+   1 Pune Warriors,LJ Wright
+   1 Pune Warriors,JD Ryder
+   1 Pune Warriors,AJ Finch
+   1 Mumbai Indians,YK Pathan
+   1 Mumbai Indians,RE Levi
+   1 Mumbai Indians,R Sharma
+   1 Mumbai Indians,R McLaren
+   1 Mumbai Indians,PA Patel
+   1 Mumbai Indians,KV Sharma
+   1 Mumbai Indians,KD Karthik
+   1 Mumbai Indians,JJ Bumrah
+   1 Mumbai Indians,JEC Franklin
+   1 Mumbai Indians,JC Buttler
+   1 Mumbai Indians,DW Steyn
+   1 Mumbai Indians,DJ Bravo
+   1 Mumbai Indians,CRD Fernando
+   1 Mumbai Indians,AP Tare
+   1 Mumbai Indians,A Nehra
+   1 Kolkata Knight Riders,Umar Gul
+   1 Kolkata Knight Riders,Shoaib Akhtar
+   1 Kolkata Knight Riders,SA Yadav
+   1 Kolkata Knight Riders,PP Chawla
+   1 Kolkata Knight Riders,MS Bisla
+   1 Kolkata Knight Riders,MK Pandey
+   1 Kolkata Knight Riders,M Morkel
+   1 Kolkata Knight Riders,M Kartik
+   1 Kolkata Knight Riders,LR Shukla
+   1 Kolkata Knight Riders,JD Unadkat
+   1 Kolkata Knight Riders,DJ Hussey
+   1 Kolkata Knight Riders,CH Gayle
+   1 Kolkata Knight Riders,BJ Hodge
+   1 Kolkata Knight Riders,BB McCullum
+   1 Kolkata Knight Riders,B Lee
+   1 Kolkata Knight Riders,AD Mathews
+   1 Kochi Tuskers Kerala,P Parameswaran
+   1 Kochi Tuskers Kerala,DPMD Jayawardene
+   1 Kings XI Punjab,Yuvraj Singh
+   1 Kings XI Punjab,V Sehwag
+   1 Kings XI Punjab,SP Narine
+   1 Kings XI Punjab,SM Katich
+   1 Kings XI Punjab,S Sreesanth
+   1 Kings XI Punjab,RS Bopara
+   1 Kings XI Punjab,MS Gony
+   1 Kings XI Punjab,MM Sharma
+   1 Kings XI Punjab,KD Karthik
+   1 Kings XI Punjab,J Theron
+   1 Kings XI Punjab,IK Pathan
+   1 Kings XI Punjab,Harmeet Singh
+   1 Kings XI Punjab,HM Amla
+   1 Kings XI Punjab,GJ Bailey
+   1 Kings XI Punjab,DJ Hussey
+   1 Kings XI Punjab,BA Bhatt
+   1 Kings XI Punjab,B Lee
+   1 Kings XI Punjab,AD Mascarenhas
+   1 Gujarat Lions,V Kohli
+   1 Gujarat Lions,P Kumar
+   1 Gujarat Lions,CH Morris
+   1 Delhi Daredevils,Z Khan
+   1 Delhi Daredevils,Yuvraj Singh
+   1 Delhi Daredevils,TM Dilshan
+   1 Delhi Daredevils,SP Goswami
+   1 Delhi Daredevils,S Nadeem
+   1 Delhi Daredevils,R Bhatia
+   1 Delhi Daredevils,Q de Kock
+   1 Delhi Daredevils,PD Collingwood
+   1 Delhi Daredevils,P Negi
+   1 Delhi Daredevils,NM Coulter-Nile
+   1 Delhi Daredevils,Mohammed Shami
+   1 Delhi Daredevils,MF Maharoof
+   1 Delhi Daredevils,MA Agarwal
+   1 Delhi Daredevils,M Vijay
+   1 Delhi Daredevils,M Morkel
+   1 Delhi Daredevils,KP Pietersen
+   1 Delhi Daredevils,KM Jadhav
+   1 Delhi Daredevils,IK Pathan
+   1 Delhi Daredevils,GD McGrath
+   1 Delhi Daredevils,DP Nannes
+   1 Delhi Daredevils,DL Vettori
+   1 Delhi Daredevils,CR Brathwaite
+   1 Delhi Daredevils,CJ Anderson
+   1 Delhi Daredevils,CH Morris
+   1 Delhi Daredevils,A Nehra
+   1 Deccan Chargers,WPUJC Vaas
+   1 Deccan Chargers,TL Suman
+   1 Deccan Chargers,S Sohal
+   1 Deccan Chargers,S Dhawan
+   1 Deccan Chargers,RP Singh
+   1 Deccan Chargers,RJ Harris
+   1 Deccan Chargers,PP Ojha
+   1 Deccan Chargers,KC Sangakkara
+   1 Deccan Chargers,I Sharma
+   1 Deccan Chargers,Harmeet Singh
+   1 Deccan Chargers,HH Gibbs
+   1 Deccan Chargers,DR Smith
+   1 Deccan Chargers,CL White
+   1 Deccan Chargers,A Kumble
+   1 Chennai Super Kings,WP Saha
+   1 Chennai Super Kings,SB Jakati
+   1 Chennai Super Kings,S Badrinath
+   1 Chennai Super Kings,S Anirudha
+   1 Chennai Super Kings,R Ashwin
+   1 Chennai Super Kings,P Negi
+   1 Chennai Super Kings,MM Sharma
+   1 Chennai Super Kings,L Balaji
+   1 Chennai Super Kings,KMDN Kulasekara
+   1 Chennai Super Kings,JDP Oram
+   1 Chennai Super Kings,JA Morkel
+   1 Chennai Super Kings,DJ Bravo
