@@ -1,9 +1,13 @@
 package com.example.novalauncherclone;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetBehavior.BottomSheetCallback;
@@ -11,8 +15,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,20 +28,45 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    boolean isBottom = true;
     ViewPager mViewPager;
     int cellHeight;
 
     int NUMBER_OF_ROWS = 5;
     int DRAWER_PEEK_HEIGHT = 100;
+    String PREFS_NAME = "NovaPrefs";
+    ImageView mHomeScreenImage;
+
+    int numRow = 0, numColumn = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        initializeHome();
-        initializeDrawer();
+
+        getPermissions();
+        getData();
+
+        final LinearLayout mTopDrawerLayout = findViewById(R.id.topDrawerLayout);
+        mTopDrawerLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                DRAWER_PEEK_HEIGHT = mTopDrawerLayout.getHeight();
+                initializeHome();
+                initializeDrawer();
+            }
+        });
+
+        mHomeScreenImage = findViewById(R.id.homeScreenImage);
+
+        ImageButton mSettings = findViewById(R.id.settings);
+        mSettings.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+            }
+        });
     }
 
 
@@ -44,21 +77,21 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<AppObject> appList1 = new ArrayList<>();
         ArrayList<AppObject> appList2 = new ArrayList<>();
         ArrayList<AppObject> appList3 = new ArrayList<>();
-        for (int i = 0; i < 20 ;i++)
-            appList1.add(new AppObject("", "", getResources().getDrawable(R.drawable.ic_launcher_foreground)));
-        for (int i = 0; i < 20 ;i++)
-            appList2.add(new AppObject("", "", getResources().getDrawable(R.drawable.ic_launcher_foreground)));
-        for (int i = 0; i < 20 ;i++)
-            appList3.add(new AppObject("", "", getResources().getDrawable(R.drawable.ic_launcher_foreground)));
+        for (int i = 0; i < numColumn*numRow ;i++)
+            appList1.add(new AppObject("", "", getResources().getDrawable(R.drawable.ic_launcher_foreground), false));
+        for (int i = 0; i < numColumn*numRow ;i++)
+            appList2.add(new AppObject("", "", getResources().getDrawable(R.drawable.ic_launcher_foreground), false));
+        for (int i = 0; i < numColumn*numRow ;i++)
+            appList3.add(new AppObject("", "", getResources().getDrawable(R.drawable.ic_launcher_foreground),false));
 
         pagerAppList.add(new PagerObject(appList1));
         pagerAppList.add(new PagerObject(appList2));
         pagerAppList.add(new PagerObject(appList3));
 
-        cellHeight = (getDisplayContentHeight() - DRAWER_PEEK_HEIGHT) / NUMBER_OF_ROWS;
+        cellHeight = (getDisplayContentHeight() - DRAWER_PEEK_HEIGHT) / numRow;
 
         mViewPager = findViewById(R.id.viewPager);
-        mViewPagerAdapter = new ViewPagerAdapter(this, pagerAppList, cellHeight);
+        mViewPagerAdapter = new ViewPagerAdapter(this, pagerAppList, cellHeight, numColumn);
         mViewPager.setAdapter(mViewPagerAdapter);
     }
 
@@ -103,12 +136,23 @@ public class MainActivity extends AppCompatActivity {
     AppObject mAppDrag = null;
     public void itemPress(AppObject app){
 
-        Toast.makeText(getApplicationContext(), "App clicked", Toast.LENGTH_SHORT).show();
+        if(mAppDrag != null && !app.getName().equals("")){
+            Toast.makeText(this,"Cell Already Occupied", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(mAppDrag != null && !app.getIsAppInDrawer()){
 
-        if(mAppDrag != null){
             app.setPackageName(mAppDrag.getPackageName());
             app.setName(mAppDrag.getName());
             app.setImage(mAppDrag.getImage());
+            app.setIsAppInDrawer(false);
+
+            if(!mAppDrag.getIsAppInDrawer()){
+                mAppDrag.setPackageName("");
+                mAppDrag.setName("");
+                mAppDrag.setImage(getResources().getDrawable(R.drawable.ic_launcher_foreground));
+                mAppDrag.setIsAppInDrawer(false);
+            }
             mAppDrag = null;
             mViewPagerAdapter.notifyGridChanged();
             return;
@@ -130,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void collapseDrawer() {
-        mDrawerGridView.setY(0);
+        mDrawerGridView.setY(DRAWER_PEEK_HEIGHT);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
     }
 
@@ -148,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
             String appPackageName = untreatedApp.activityInfo.packageName;
             Drawable appImage = untreatedApp.activityInfo.loadIcon(getPackageManager());
 
-            AppObject app = new AppObject(appName, appPackageName, appImage);
+            AppObject app = new AppObject(appName, appPackageName, appImage, true);
             if (!list.contains(app))
                 list.add(app);
         }
@@ -175,5 +219,42 @@ public class MainActivity extends AppCompatActivity {
         windowManager.getDefaultDisplay().getSize(size);
         screenHeight = size.y;
         return screenHeight - contentTop - actionBarHeight - statusBarHeight;
+    }
+
+
+
+
+    private void getData(){
+        ImageView mHomeScreenImage = findViewById(R.id.homeScreenImage);
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String imageUri = sharedPreferences.getString("imageUri", null);
+        int numRow = sharedPreferences.getInt("numRow", 7);
+        int numColumn = sharedPreferences.getInt("numColumn", 5);
+
+        if(this.numRow != numRow || this.numColumn != numColumn){
+            this.numRow = numRow;
+            this.numColumn = numColumn;
+            initializeHome();
+        }
+
+        if(imageUri != null)
+            mHomeScreenImage.setImageURI(Uri.parse(imageUri));
+    }
+
+
+
+    private void getPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        }
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
     }
 }

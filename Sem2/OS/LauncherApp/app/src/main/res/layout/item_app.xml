@@ -10,11 +10,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="10sp"
         android:id="@+id/image"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_launcher"
+        />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="App Name"
         android:id="@+id/label"
         android:textSize="12sp"

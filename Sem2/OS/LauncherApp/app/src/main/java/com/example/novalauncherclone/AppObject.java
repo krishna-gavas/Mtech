@@ -6,34 +6,30 @@ public class AppObject {
 
     private String name,packageName;
     private Drawable image;
+    private Boolean isAppInDrawer;
 
-    public AppObject(String name,String packageName,Drawable image){
+    public AppObject(String name, String packageName, Drawable image, Boolean isAppInDrawer){
         this.name = name;
         this.packageName = packageName;
         this.image = image;
+        this.isAppInDrawer = isAppInDrawer;
     }
 
-    public String getName(){
-        return name;
-    }
-
-    public String getPackageName(){
-        return packageName;
-    }
-
-    public Drawable getImage(){
-        return image;
-    }
+    public String getPackageName(){return packageName;}
+    public String getName(){return name;}
+    public Drawable getImage(){return image;}
+    public Boolean getIsAppInDrawer(){return isAppInDrawer;}
 
     public void setPackageName(String packageName){
         this.packageName = packageName;
     }
-
     public void setName(String name){
         this.name = name;
     }
-
     public void setImage(Drawable image){
         this.image = image;
+    }
+    public void setIsAppInDrawer(Boolean image){
+        this.isAppInDrawer = isAppInDrawer;
     }
 }
