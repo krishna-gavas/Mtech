@@ -20,6 +20,13 @@ public class AppObject {
     public Drawable getImage(){return image;}
     public Boolean getIsAppInDrawer(){return isAppInDrawer;}
 
+    public String getAppName(String name){
+        if(this.name == name)
+            return packageName;
+        return "";
+
+    }
+
     public void setPackageName(String packageName){
         this.packageName = packageName;
     }

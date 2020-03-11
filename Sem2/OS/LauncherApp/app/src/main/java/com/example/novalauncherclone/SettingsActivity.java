@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,6 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         Button mHomeScreenButton = findViewById(R.id.homeScreenButton);
         Button mGridSizeButton = findViewById(R.id.gridSizeButton);
+        Button mSaveButton = findViewById(R.id.saveButton);
 
         mHomeScreenImage = findViewById(R.id.homeScreenImage);
         mNumRow = findViewById(R.id.numRow);
@@ -38,6 +40,13 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveData();
+            }
+        });
+
+        mSaveButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
 
